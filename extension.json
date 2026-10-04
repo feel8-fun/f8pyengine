@@ -5,13 +5,15 @@
       "extensionId": "pyengine",
       "name": "Python Engine",
       "version": "0.0.1",
-      "description": "Run Python processing graphs.",
+      "description": "Run Python processing graphs, expressions and custom scripts.",
       "serviceClasses": [
-        "f8.pyengine"
+        "f8.pyengine",
+        "f8.pyexpr",
+        "f8.pyscript"
       ],
       "runtime": {
         "kind": "workspace",
-        "environment": "web-studio-runtime"
+        "environment": "pyengine"
       }
     }
   ]

@@ -8,6 +8,20 @@
         "any": "${F8_PACKAGE_ROOT}/config/services/f8.pyengine/service.yml"
       },
       "describe": "${F8_PACKAGE_ROOT}/config/describes/f8.pyengine.json"
+    },
+    {
+      "serviceClass": "f8.pyexpr",
+      "manifests": {
+        "any": "${F8_PACKAGE_ROOT}/config/services/f8.pyexpr/service.yml"
+      },
+      "describe": "${F8_PACKAGE_ROOT}/config/describes/f8.pyexpr.json"
+    },
+    {
+      "serviceClass": "f8.pyscript",
+      "manifests": {
+        "any": "${F8_PACKAGE_ROOT}/config/services/f8.pyscript/service.yml"
+      },
+      "describe": "${F8_PACKAGE_ROOT}/config/describes/f8.pyscript.json"
     }
   ]
 }

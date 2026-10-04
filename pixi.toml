@@ -18,3 +18,15 @@ f8pyengine = {path = ".", editable = true}
 
 [tasks]
 check = "python -m f8pysdk.extension_packaging --check"
+
+[tasks.f8pyengine]
+cmd = "python -m f8pyengine.main"
+
+[tasks.f8pyexpr]
+cmd = "python -m f8pyscript.main_expr"
+
+[tasks.f8pyscript]
+cmd = "python -m f8pyscript.main_script"
+
+[environments]
+pyengine = []

@@ -1,7 +1,8 @@
 {
   "pythonVersion": "3.14",
   "include": [
-    "f8pyengine"
+    "f8pyengine",
+    "f8pyscript"
   ],
   "exclude": [
     "**/tests/**",

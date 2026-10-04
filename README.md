@@ -80,3 +80,15 @@ Feature-index state fields (`*FeatureIndex`) allow selecting a specific feature 
 - Mapping: `value(0..1)` -> clamp -> optional `invert` -> `[minPercent, maxPercent]`
 - Header auth: `X-Connection-Key = connectionKey`
 - Rate-limit aware: consumes `X-RateLimit-*` headers and applies temporary backoff
+
+## Python services
+
+This extension owns three services in one environment:
+
+- `f8.pyengine`: processing graphs (`python -m f8pyengine.main`).
+- `f8.pyexpr`: expressions (`python -m f8pyscript.main_expr`).
+- `f8.pyscript`: scripts (`python -m f8pyscript.main_script`).
+
+The wheel contains both Python namespaces. They are installed, enabled and
+released together as the `pyengine` extension. `f8pyscript` is an internal
+module namespace, not a separate extension or distribution.
