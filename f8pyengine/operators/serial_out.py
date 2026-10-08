@@ -260,6 +260,8 @@ SerialOutRuntimeNode.SPEC = F8OperatorSpec(
             showOnNode=True,
         ),
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="port",
             label="Port",
             description="Serial port name (e.g., COM3).",

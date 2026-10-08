@@ -655,6 +655,8 @@ HandyOutRuntimeNode.SPEC = F8OperatorSpec(
             showOnNode=True,
         ),
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="connectionKey",
             label="Connection Key",
             description="The Handy X-Connection-Key value.",
@@ -665,6 +667,8 @@ HandyOutRuntimeNode.SPEC = F8OperatorSpec(
             redactOnPublish=True,
         ),
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="baseUrl",
             label="Base URL",
             description="Handy API base URL. Reset to default when exporting publish JSON.",

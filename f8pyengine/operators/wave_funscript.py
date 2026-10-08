@@ -581,6 +581,8 @@ WaveFunscriptRuntimeNode.SPEC = F8OperatorSpec(
     ],
     stateFields=[
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="funscriptPath",
             label="Funscript Path",
             description="Path to a .funscript JSON file. Cleared when exporting publish JSON.",

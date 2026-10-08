@@ -382,6 +382,8 @@ ReplayerRuntimeNode.SPEC = F8OperatorSpec(
     ),
     stateFields=[
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="path",
             label="Path",
             description="Recording file path.",

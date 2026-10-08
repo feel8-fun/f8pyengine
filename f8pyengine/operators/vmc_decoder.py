@@ -711,6 +711,8 @@ VmcDecoderRuntimeNode.SPEC = F8OperatorSpec(
             showOnNode=False,
         ),
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="selectedKey",
             label="Selected Key",
             description="If set and matches an available key, outputs `selectedSkeleton`; otherwise None.",

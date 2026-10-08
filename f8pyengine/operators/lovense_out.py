@@ -740,6 +740,8 @@ LovenseOutRuntimeNode.SPEC = F8OperatorSpec(
             showOnNode=True,
         ),
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="commandUrl",
             label="Command URL",
             description="Lovense Local API /command URL. Reset to default when exporting publish JSON.",
@@ -931,6 +933,8 @@ LovenseOutRuntimeNode.SPEC = F8OperatorSpec(
         ),
         F8StateSpec(
             name="toy",
+            persistent=True,
+            publishable=False,
             label="Toy",
             description="Optional target toy id. Empty uses defaultToy.",
             valueSchema=string_schema(default=""),
@@ -941,6 +945,8 @@ LovenseOutRuntimeNode.SPEC = F8OperatorSpec(
         ),
         F8StateSpec(
             name="defaultToy",
+            persistent=True,
+            publishable=False,
             label="Default Toy",
             description="Fallback toy id when toy is empty.",
             valueSchema=string_schema(default=""),

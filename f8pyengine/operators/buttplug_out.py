@@ -943,6 +943,8 @@ ButtplugOutRuntimeNode.SPEC = F8OperatorSpec(
             showOnNode=True,
         ),
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="wsUrl",
             label="WebSocket URL",
             description="Buttplug server websocket URL. Reset to default when exporting publish JSON.",
@@ -989,6 +991,8 @@ ButtplugOutRuntimeNode.SPEC = F8OperatorSpec(
             showOnNode=False,
         ),
         F8StateSpec(
+            persistent=True,
+            publishable=False,
             name="selectedDevice",
             label="Selected Device",
             description='Target token: "index|name".',
