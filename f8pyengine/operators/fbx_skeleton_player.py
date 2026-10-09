@@ -174,8 +174,10 @@ FbxSkeletonPlayerRuntimeNode.SPEC = F8OperatorSpec(
     dataInPorts=[F8DataPortSpec(name="timeSec", description="Playback time in seconds.", payload=F8DataPayloadSpec(kind=F8DataPortPayloadKind.json, valueSchema=number_schema()))],
     dataOutPorts=[F8DataPortSpec(name="skeletons", description="Current animated skeleton pose.", payload=F8DataPayloadSpec(kind=F8DataPortPayloadKind.json, valueSchema=any_schema()))],
     stateFields=[
-        F8StateSpec(name="path", label="FBX Path", valueSchema=string_schema(default=""), access=F8StateAccess.rw, valueRequired=True, showOnNode=True),
-        F8StateSpec(name="blenderPath", label="Blender Path", valueSchema=string_schema(default=""), access=F8StateAccess.rw, valueRequired=True),
+        F8StateSpec(name="path", label="FBX Path", valueSchema=string_schema(default=""), access=F8StateAccess.rw,
+            persistent=True, publishable=False, valueRequired=True, showOnNode=True),
+        F8StateSpec(name="blenderPath", label="Blender Path", valueSchema=string_schema(default=""), access=F8StateAccess.rw,
+            persistent=True, publishable=False, valueRequired=True),
         F8StateSpec(name="loop", label="Loop", valueSchema=boolean_schema(default=True), access=F8StateAccess.rw, valueRequired=True, showOnNode=True),
     ],
 )

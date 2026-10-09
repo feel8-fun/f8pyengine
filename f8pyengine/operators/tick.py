@@ -195,6 +195,8 @@ TickRuntimeNode.SPEC = F8OperatorSpec(
     stateFields=[
         F8StateSpec(
             name="tickMs",
+            persistent=True,
+            publishable=True,
             label="Tick (ms)",
             description="Interval in milliseconds for emitting exec ticks.",
             valueSchema=integer_schema(default=100, minimum=1, maximum=50000),
@@ -204,6 +206,8 @@ TickRuntimeNode.SPEC = F8OperatorSpec(
         ),
         F8StateSpec(
             name="hiResTimer",
+            persistent=True,
+            publishable=True,
             label="High-res Timer (Windows)",
             description="Request 1ms system timer resolution to reduce jitter on Windows.",
             valueSchema=boolean_schema(default=True),

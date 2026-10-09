@@ -1004,6 +1004,8 @@ ButtplugOutRuntimeNode.SPEC = F8OperatorSpec(
         ),
         F8StateSpec(
             name="rescan",
+            persistent=False,
+            publishable=False,
             label="Rescan",
             description="Set true to trigger one scan cycle; runtime resets it to false.",
             valueSchema=boolean_schema(default=False),
