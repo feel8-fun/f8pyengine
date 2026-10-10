@@ -8,6 +8,7 @@ import ipaddress
 import json
 import logging
 import socket
+import os
 from dataclasses import dataclass
 from collections import deque
 from typing import Any
@@ -335,12 +336,13 @@ class UdpInRuntimeNode(OperatorNode, EntrypointNode):
             if cfg.reuse_address:
                 try:
                     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-                except OSError:
-                    pass
-                try:
-                    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
-                except (AttributeError, OSError):
-                    pass
+                except OSError as exc:
+                    logger.warning("udp_in SO_REUSEADDR unavailable nodeId=%s", self.node_id, exc_info=exc)
+                if os.name != "nt":
+                    try:
+                        sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEPORT, 1)
+                    except OSError as exc:
+                        logger.warning("udp_in SO_REUSEPORT unavailable nodeId=%s", self.node_id, exc_info=exc)
             sock.bind((cfg.bind_address, cfg.port))
             sock.setblocking(False)
 
@@ -354,8 +356,9 @@ class UdpInRuntimeNode(OperatorNode, EntrypointNode):
             if sock is not None:
                 try:
                     sock.close()
-                except OSError:
-                    pass
+                except OSError as close_exc:
+                    logger.warning("udp_in failed socket cleanup nodeId=%s", self.node_id, exc_info=close_exc)
+            logger.exception("udp_in open failed nodeId=%s", self.node_id, exc_info=exc)
             self._transport = None
             self._queue = None
             self._cfg = None

@@ -1,11 +1,10 @@
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
 from types import CodeType
 from typing import Any
 
-from .expr_json_ref import PyExprJsonRef
+from f8pysdk.expressions import evaluate_expression, unwrap_value
 from .expr_validator import PYEXPR_ALLOWED_GLOBAL_FNS
 
 try:
@@ -16,15 +15,10 @@ except ModuleNotFoundError:
 
 _PYEXPR_EVAL_ERRORS = (Exception,)
 def _safe_eval_compiled(code: CodeType, *, names: dict[str, Any], allow_numpy: bool) -> Any:
-    safe_globals: dict[str, Any] = {"__builtins__": {}}
-    safe_globals.update(PYEXPR_ALLOWED_GLOBAL_FNS)
-    safe_globals["math"] = math
-    if allow_numpy:
-        if np is None:
-            raise RuntimeError("numpy is not available")
-        safe_globals["np"] = np
-        safe_globals["numpy"] = np
-    return eval(code, safe_globals, names)  # noqa: S307
+    if allow_numpy and np is None:
+        raise RuntimeError("numpy is not available")
+    return evaluate_expression(code, names=names, functions=PYEXPR_ALLOWED_GLOBAL_FNS,
+                               numpy_module=np if allow_numpy else None)
 
 
 @dataclass(frozen=True, slots=True)
@@ -37,8 +31,7 @@ class PyExprEvaluator:
     def evaluate(self, code: CodeType, *, names: dict[str, Any], allow_numpy: bool) -> PyExprEvalResult:
         try:
             value = _safe_eval_compiled(code, names=names, allow_numpy=allow_numpy)
-            if isinstance(value, PyExprJsonRef):
-                value = value.unwrap()
+            value = unwrap_value(value)
             return PyExprEvalResult(value=value)
         except _PYEXPR_EVAL_ERRORS as exc:
             return PyExprEvalResult(error=exc)
